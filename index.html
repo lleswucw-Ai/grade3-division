@@ -306,49 +306,31 @@ function newQuestion() {
 wrongCount = 0;
 }
 newQuestion();
-
-let wrongCount = 0;
-
-
 function checkRandomAnswer() {
 
-    const answer =
-        Number(
-            document.getElementById(
-                "randomAnswer"
-            ).value
-        );
+    const answer = Number(
+        document.getElementById("randomAnswer").value
+    );
 
     const result =
-        document.getElementById(
-            "randomResult"
-        );
+        document.getElementById("randomResult");
 
     const hint =
-        document.getElementById(
-            "aiHint"
-        );
-hint.innerHTML = "🧪 小老師測試成功";
+        document.getElementById("aiHint");
 
-    if (
-        answer === currentQuestion.answer
-    ) {
+
+    // 答對
+    if (answer === currentQuestion.answer) {
 
         result.innerHTML =
-            `
-            🎉 答對了！
+            "🎉 答對了！ " +
+            currentQuestion.total +
+            " ÷ " +
+            currentQuestion.group +
+            " = " +
+            currentQuestion.answer;
 
-            <br>
-
-            ${currentQuestion.total}
-            ÷
-            ${currentQuestion.group}
-            =
-            ${currentQuestion.answer}
-            `;
-
-        result.className =
-            "result correct";
+        result.className = "result correct";
 
         hint.innerHTML =
             "🌟 很好！你已經理解這一題的除法概念。";
@@ -359,86 +341,82 @@ hint.innerHTML = "🧪 小老師測試成功";
     }
 
 
+    // 答錯
     wrongCount++;
 
-
-    result.innerHTML =
-        "❌ 再想一想。";
-
-    result.className =
-        "result wrong";
+    result.innerHTML = "❌ 再想一想。";
+    result.className = "result wrong";
 
 
-    if (
-        currentQuestion.type === "equal"
-    ) {
+    // 等分除
+    if (currentQuestion.type === "equal") {
 
         if (wrongCount === 1) {
 
             hint.innerHTML =
-                `
-                💡 <strong>小老師提示 1：</strong><br>
-                想一想：題目是把東西「平均分給幾個人」。
-                我們要找的是「每個人有多少」。
-                `;
+                "💡 小老師提示 1：<br>" +
+                "題目說「平均分給 " +
+                currentQuestion.group +
+                " 個人」，想想看，我們要找的是每個人分到多少。";
 
         } else if (wrongCount === 2) {
 
             hint.innerHTML =
-                `
-                🔎 <strong>小老師提示 2：</strong><br>
-                有 ${currentQuestion.total} 顆，
-                要平均分成 ${currentQuestion.group} 份。
-                `;
+                "🔎 小老師提示 2：<br>" +
+                "總共有 " +
+                currentQuestion.total +
+                " 個，要平均分成 " +
+                currentQuestion.group +
+                " 份。";
 
         } else {
 
             hint.innerHTML =
-                `
-                🎯 <strong>小老師提示 3：</strong><br>
-                可以想成：
-                ${currentQuestion.total}
-                ÷
-                ${currentQuestion.group}
-                =
-                ？
-                `;
+                "🎯 小老師提示 3：<br>" +
+                "試著算算看：" +
+                currentQuestion.total +
+                " ÷ " +
+                currentQuestion.group +
+                " = ？";
         }
 
-    } else {
+    }
+
+
+    // 包含除
+    else {
 
         if (wrongCount === 1) {
 
             hint.innerHTML =
-                `
-                💡 <strong>小老師提示 1：</strong><br>
-                題目說的是「每 ${currentQuestion.group} 顆一組」。
-                `;
+                "💡 小老師提示 1：<br>" +
+                "題目說「每 " +
+                currentQuestion.group +
+                " 個一組」，想想看我們要找的是什麼？";
 
         } else if (wrongCount === 2) {
 
             hint.innerHTML =
-                `
-                🔎 <strong>小老師提示 2：</strong><br>
-                我們不是在找「每組有幾顆」，
-                而是在找「總共有幾組」。
-                `;
+                "🔎 小老師提示 2：<br>" +
+                "我們要找的是「總共有幾組」，不是每組有幾個。";
 
         } else {
 
             hint.innerHTML =
-                `
-                🎯 <strong>小老師提示 3：</strong><br>
-                可以想成：
-                ${currentQuestion.total}
-                ÷
-                ${currentQuestion.group}
-                =
-                ？
-                `;
+                "🎯 小老師提示 3：<br>" +
+                "試著算算看：" +
+                currentQuestion.total +
+                " ÷ " +
+                currentQuestion.group +
+                " = ？";
         }
+
     }
 }
+let wrongCount = 0;
+
+
+
       function showEqualApples() {
 
     const container =
