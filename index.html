@@ -183,34 +183,7 @@
     </div>
 
 
-    <script>
-function showContainApples() {
-
-    const container =
-        document.getElementById("containApples");
-
-    container.innerHTML = "";
-
-    const totalApples = 12;
-    const applesPerGroup = 3;
-
-    const groups =
-        totalApples / applesPerGroup;
-
-    for (let i = 0; i < groups; i++) {
-
-        const group =
-            document.createElement("div");
-
-        group.className = "apple-group";
-
-        group.innerHTML =
-            "🍎 ".repeat(applesPerGroup);
-
-        container.appendChild(group);
-    }
-}
-        
+    <script>     
       function showEqualApples() {
 
     const container =
@@ -268,7 +241,32 @@ function showContainApples() {
 
         }
 
+function showContainApples() {
 
+    const container =
+        document.getElementById("containApples");
+
+    container.innerHTML = "";
+
+    const totalApples = 12;
+    const applesPerGroup = 3;
+
+    const groups =
+        totalApples / applesPerGroup;
+
+    for (let i = 0; i < groups; i++) {
+
+        const group =
+            document.createElement("div");
+
+        group.className = "apple-group";
+
+        group.innerHTML =
+            "🍎 ".repeat(applesPerGroup);
+
+        container.appendChild(group);
+    }
+}
         // 包含除
 
         function checkContain() {
