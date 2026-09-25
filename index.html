@@ -2,21 +2,29 @@
 <html lang="zh-Hant">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>吳老師國小 AI 互動教材</title>
 
     <style>
+
         body {
             font-family: Arial, "Microsoft JhengHei", sans-serif;
-            max-width: 800px;
+            max-width: 850px;
             margin: auto;
             padding: 30px;
             background-color: #f5f7fa;
         }
 
         h1 {
+            text-align: center;
+        }
+
+        .intro {
             text-align: center;
         }
 
@@ -27,10 +35,8 @@
             border-radius: 15px;
         }
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
+        .answer-box {
+            margin-top: 20px;
         }
 
         input {
@@ -39,24 +45,59 @@
             font-size: 20px;
         }
 
-        #result {
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .result {
             font-size: 22px;
             font-weight: bold;
             margin-top: 20px;
         }
+
+        .correct {
+            color: green;
+        }
+
+        .wrong {
+            color: red;
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
     <h1>🧮 吳老師國小 AI 互動教材</h1>
 
-    <div class="card">
+    <div class="intro">
 
-        <h2>三年級數學：等分除</h2>
+        <h2>三年級數學：除法</h2>
 
         <p>
-            🍎 老師有 <strong>12 顆蘋果</strong>，
+            今天我們要學習兩種不同的除法情境：
+        </p>
+
+        <p>
+            🍎 <strong>等分除</strong>　📦 <strong>包含除</strong>
+        </p>
+
+    </div>
+
+
+    <!-- 等分除 -->
+
+    <div class="card">
+
+        <h2>🍎 等分除</h2>
+
+        <p>
+            老師有 <strong>12 顆蘋果</strong>，
             要平均分給 <strong>3 個人</strong>。
         </p>
 
@@ -64,29 +105,127 @@
             請問：每個人可以得到幾顆蘋果？
         </p>
 
-        <input type="number" id="answer">
+        <div class="answer-box">
 
-        <button onclick="checkAnswer()">送出答案</button>
+            <input
+                type="number"
+                id="equalAnswer">
 
-        <div id="result"></div>
+            <button onclick="checkEqual()">
+                送出答案
+            </button>
+
+        </div>
+
+        <div
+            id="equalResult"
+            class="result">
+        </div>
 
     </div>
 
+
+    <!-- 包含除 -->
+
+    <div class="card">
+
+        <h2>📦 包含除</h2>
+
+        <p>
+            老師有 <strong>12 顆蘋果</strong>，
+            每 <strong>3 顆</strong>裝成一袋。
+        </p>
+
+        <p>
+            請問：可以裝成幾袋？
+        </p>
+
+        <div class="answer-box">
+
+            <input
+                type="number"
+                id="containAnswer">
+
+            <button onclick="checkContain()">
+                送出答案
+            </button>
+
+        </div>
+
+        <div
+            id="containResult"
+            class="result">
+        </div>
+
+    </div>
+
+
     <script>
 
-        function checkAnswer() {
+        // 等分除
 
-            const answer = document.getElementById("answer").value;
+        function checkEqual() {
 
-            const result = document.getElementById("result");
+            const answer =
+                document.getElementById(
+                    "equalAnswer"
+                ).value;
+
+            const result =
+                document.getElementById(
+                    "equalResult"
+                );
 
             if (answer == 4) {
 
-                result.innerHTML = "🎉 答對了！12 ÷ 3 = 4";
+                result.innerHTML =
+                    "🎉 答對了！12 ÷ 3 = 4";
+
+                result.className =
+                    "result correct";
 
             } else {
 
-                result.innerHTML = "❌ 再想一想：12 顆平均分給 3 個人。";
+                result.innerHTML =
+                    "❌ 再想一想：12 顆平均分給 3 個人。";
+
+                result.className =
+                    "result wrong";
+
+            }
+
+        }
+
+
+        // 包含除
+
+        function checkContain() {
+
+            const answer =
+                document.getElementById(
+                    "containAnswer"
+                ).value;
+
+            const result =
+                document.getElementById(
+                    "containResult"
+                );
+
+            if (answer == 4) {
+
+                result.innerHTML =
+                    "🎉 答對了！12 ÷ 3 = 4";
+
+                result.className =
+                    "result correct";
+
+            } else {
+
+                result.innerHTML =
+                    "❌ 再想一想：每 3 顆裝成一袋。";
+
+                result.className =
+                    "result wrong";
 
             }
 
