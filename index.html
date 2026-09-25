@@ -11,7 +11,13 @@
     <title>吳老師國小 AI 互動教材</title>
 
     <style>
-
+.hint {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #fff8dc;
+    border-radius: 10px;
+    font-size: 18px;
+}
         body {
             font-family: Arial, "Microsoft JhengHei", sans-serif;
             max-width: 850px;
@@ -293,8 +299,16 @@ function newQuestion() {
     document.getElementById(
         "randomResult"
     ).innerHTML = "";
+    document.getElementById(
+    "aiHint"
+).innerHTML = "";
+
+wrongCount = 0;
 }
 newQuestion();
+
+let wrongCount = 0;
+
 
 function checkRandomAnswer() {
 
@@ -309,6 +323,12 @@ function checkRandomAnswer() {
         document.getElementById(
             "randomResult"
         );
+
+    const hint =
+        document.getElementById(
+            "aiHint"
+        );
+
 
     if (
         answer === currentQuestion.answer
@@ -330,13 +350,93 @@ function checkRandomAnswer() {
         result.className =
             "result correct";
 
+        hint.innerHTML =
+            "🌟 很好！你已經理解這一題的除法概念。";
+
+        wrongCount = 0;
+
+        return;
+    }
+
+
+    wrongCount++;
+
+
+    result.innerHTML =
+        "❌ 再想一想。";
+
+    result.className =
+        "result wrong";
+
+
+    if (
+        currentQuestion.type === "equal"
+    ) {
+
+        if (wrongCount === 1) {
+
+            hint.innerHTML =
+                `
+                💡 <strong>小老師提示 1：</strong><br>
+                想一想：題目是把東西「平均分給幾個人」。
+                我們要找的是「每個人有多少」。
+                `;
+
+        } else if (wrongCount === 2) {
+
+            hint.innerHTML =
+                `
+                🔎 <strong>小老師提示 2：</strong><br>
+                有 ${currentQuestion.total} 顆，
+                要平均分成 ${currentQuestion.group} 份。
+                `;
+
+        } else {
+
+            hint.innerHTML =
+                `
+                🎯 <strong>小老師提示 3：</strong><br>
+                可以想成：
+                ${currentQuestion.total}
+                ÷
+                ${currentQuestion.group}
+                =
+                ？
+                `;
+        }
+
     } else {
 
-        result.innerHTML =
-            "❌ 再想一想，可以先看看題目中的「平均分」或「每幾個一組」。";
+        if (wrongCount === 1) {
 
-        result.className =
-            "result wrong";
+            hint.innerHTML =
+                `
+                💡 <strong>小老師提示 1：</strong><br>
+                題目說的是「每 ${currentQuestion.group} 顆一組」。
+                `;
+
+        } else if (wrongCount === 2) {
+
+            hint.innerHTML =
+                `
+                🔎 <strong>小老師提示 2：</strong><br>
+                我們不是在找「每組有幾顆」，
+                而是在找「總共有幾組」。
+                `;
+
+        } else {
+
+            hint.innerHTML =
+                `
+                🎯 <strong>小老師提示 3：</strong><br>
+                可以想成：
+                ${currentQuestion.total}
+                ÷
+                ${currentQuestion.group}
+                =
+                ？
+                `;
+        }
     }
 }
       function showEqualApples() {
@@ -531,7 +631,7 @@ function checkType(type) {
         id="randomResult"
         class="result">
     </div>
-
+<div id="aiHint" class="hint"></div>
 </div>
 </body>
 
