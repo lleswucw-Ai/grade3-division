@@ -183,7 +183,162 @@
     </div>
 
 
-    <script>     
+    <script> 
+        let currentQuestion = {};
+
+const questionTypes = [
+    "equal",
+    "contain"
+];
+
+const questions = [
+    {
+        total: 12,
+        group: 3
+    },
+    {
+        total: 15,
+        group: 5
+    },
+    {
+        total: 18,
+        group: 3
+    },
+    {
+        total: 20,
+        group: 4
+    },
+    {
+        total: 24,
+        group: 6
+    },
+    {
+        total: 24,
+        group: 4
+    }
+];
+
+
+function newQuestion() {
+
+    const question =
+        questions[
+            Math.floor(
+                Math.random() * questions.length
+            )
+        ];
+
+    const type =
+        questionTypes[
+            Math.floor(
+                Math.random() * questionTypes.length
+            )
+        ];
+
+    currentQuestion = {
+        total: question.total,
+        group: question.group,
+        type: type,
+        answer:
+            question.total / question.group
+    };
+
+    const questionBox =
+        document.getElementById(
+            "randomQuestion"
+        );
+
+    if (type === "equal") {
+
+        questionBox.innerHTML =
+            `
+            <p>
+                🍎 <strong>等分除</strong>
+            </p>
+
+            <p>
+                有 ${question.total} 顆糖果，
+                平均分給 ${question.group} 個人。
+            </p>
+
+            <p>
+                每個人有幾顆？
+            </p>
+            `;
+
+    } else {
+
+        questionBox.innerHTML =
+            `
+            <p>
+                📦 <strong>包含除</strong>
+            </p>
+
+            <p>
+                有 ${question.total} 顆糖果，
+                每 ${question.group} 顆裝成一袋。
+            </p>
+
+            <p>
+                可以裝成幾袋？
+            </p>
+            `;
+
+    }
+
+    document.getElementById(
+        "randomAnswer"
+    ).value = "";
+
+    document.getElementById(
+        "randomResult"
+    ).innerHTML = "";
+}
+newQuestion();
+
+function checkRandomAnswer() {
+
+    const answer =
+        Number(
+            document.getElementById(
+                "randomAnswer"
+            ).value
+        );
+
+    const result =
+        document.getElementById(
+            "randomResult"
+        );
+
+    if (
+        answer === currentQuestion.answer
+    ) {
+
+        result.innerHTML =
+            `
+            🎉 答對了！
+
+            <br>
+
+            ${currentQuestion.total}
+            ÷
+            ${currentQuestion.group}
+            =
+            ${currentQuestion.answer}
+            `;
+
+        result.className =
+            "result correct";
+
+    } else {
+
+        result.innerHTML =
+            "❌ 再想一想，可以先看看題目中的「平均分」或「每幾個一組」。";
+
+        result.className =
+            "result wrong";
+    }
+}
       function showEqualApples() {
 
     const container =
@@ -347,6 +502,35 @@ function checkType(type) {
     </button>
 
     <div id="typeResult" class="result"></div>
+
+</div>
+    <div class="card">
+
+    <h2>🎲 隨機除法練習</h2>
+
+    <div id="randomQuestion"></div>
+
+    <div class="answer-box">
+
+        <input
+            type="number"
+            id="randomAnswer"
+            placeholder="答案">
+
+        <button onclick="checkRandomAnswer()">
+            送出答案
+        </button>
+
+        <button onclick="newQuestion()">
+            🎲 下一題
+        </button>
+
+    </div>
+
+    <div
+        id="randomResult"
+        class="result">
+    </div>
 
 </div>
 </body>
