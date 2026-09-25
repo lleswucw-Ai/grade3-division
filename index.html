@@ -210,29 +210,7 @@
         container.appendChild(group);
     }
 }
-function showEqualApples() {
 
-    const container =
-        document.getElementById("equalApples");
-
-    container.innerHTML = "";
-
-    const groups = 3;
-    const applesPerGroup = 4;
-
-    for (let i = 0; i < groups; i++) {
-
-        const group =
-            document.createElement("div");
-
-        group.className = "apple-group";
-
-        group.innerHTML =
-            "🍎 ".repeat(applesPerGroup);
-
-        container.appendChild(group);
-    }
-}
         // 等分除
 
         function checkEqual() {
