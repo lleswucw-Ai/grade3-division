@@ -65,7 +65,21 @@
         .wrong {
             color: red;
         }
+.apples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 35px;
+}
 
+.apple-group {
+    border: 3px solid #555;
+    border-radius: 12px;
+    padding: 10px;
+    min-width: 120px;
+    text-align: center;
+}
     </style>
 
 </head>
@@ -91,7 +105,12 @@
 
 
     <!-- 等分除 -->
+<div id="equalApples" class="apples">
+</div>
 
+<button onclick="showEqualApples()">
+    🍎 開始分蘋果
+</button>
     <div class="card">
 
         <h2>🍎 等分除</h2>
@@ -161,7 +180,29 @@
 
 
     <script>
+function showEqualApples() {
 
+    const container =
+        document.getElementById("equalApples");
+
+    container.innerHTML = "";
+
+    const groups = 3;
+    const applesPerGroup = 4;
+
+    for (let i = 0; i < groups; i++) {
+
+        const group =
+            document.createElement("div");
+
+        group.className = "apple-group";
+
+        group.innerHTML =
+            "🍎 ".repeat(applesPerGroup);
+
+        container.appendChild(group);
+    }
+}
         // 等分除
 
         function checkEqual() {
