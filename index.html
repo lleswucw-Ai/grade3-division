@@ -300,9 +300,55 @@ function showContainApples() {
             }
 
         }
+function checkType(type) {
 
+    const result =
+        document.getElementById("typeResult");
+
+    if (type === "equal") {
+
+        result.innerHTML =
+            "🎉 答對了！這是等分除。<br>" +
+            "因為已知分給 5 個人，要找每個人分到多少。";
+
+        result.className =
+            "result correct";
+
+    } else {
+
+        result.innerHTML =
+            "❌ 再想一想。<br>" +
+            "題目是「平均分給 5 個人」，要找每個人分到多少。";
+
+        result.className =
+            "result wrong";
+    }
+}
     </script>
+<div class="card">
 
+    <h2>🎯 小測驗：這是哪一種除法？</h2>
+
+    <p>
+        老師有 <strong>15 顆糖果</strong>，
+        要平均分給 <strong>5 個人</strong>。
+    </p>
+
+    <p>
+        請問這是哪一種除法？
+    </p>
+
+    <button onclick="checkType('equal')">
+        🍎 等分除
+    </button>
+
+    <button onclick="checkType('contain')">
+        📦 包含除
+    </button>
+
+    <div id="typeResult" class="result"></div>
+
+</div>
 </body>
 
 </html>
