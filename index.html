@@ -1,26 +1,99 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>吳老師國小 AI 互動教材</title>
+
+    <style>
+        body {
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background-color: #f5f7fa;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        input {
+            width: 80px;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>吳老師國小 AI 互動教材</h1>
+    <h1>🧮 吳老師國小 AI 互動教材</h1>
 
-    <h2>三年級數學：除法</h2>
+    <div class="card">
 
-    <p>歡迎來到「等分除」與「包含除」互動學習網站！</p>
+        <h2>三年級數學：等分除</h2>
 
-    <hr>
+        <p>
+            🍎 老師有 <strong>12 顆蘋果</strong>，
+            要平均分給 <strong>3 個人</strong>。
+        </p>
 
-    <h3>今天要學習的兩種除法</h3>
+        <p>
+            請問：每個人可以得到幾顆蘋果？
+        </p>
 
-    <p>🍎 等分除：把東西平均分給幾個人。</p>
+        <input type="number" id="answer">
 
-    <p>📦 包含除：看看可以分成幾組。</p>
+        <button onclick="checkAnswer()">送出答案</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function checkAnswer() {
+
+            const answer = document.getElementById("answer").value;
+
+            const result = document.getElementById("result");
+
+            if (answer == 4) {
+
+                result.innerHTML = "🎉 答對了！12 ÷ 3 = 4";
+
+            } else {
+
+                result.innerHTML = "❌ 再想一想：12 顆平均分給 3 個人。";
+
+            }
+
+        }
+
+    </script>
 
 </body>
+
 </html>
